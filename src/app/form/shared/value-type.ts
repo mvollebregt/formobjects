@@ -3,6 +3,7 @@
 export interface Selectable<T> {
   value: T;
   displayValue: string;
+  [propName: string]: any;
 }
 
 // ipv expliciet Value type zouden we ook number kunnen gebruiken
@@ -11,7 +12,7 @@ export type Value = 'MBO' | 'HO';
 export namespace Value {
 
   export const values: Selectable<Value>[] = [
-    {value: 'MBO', displayValue: 'MBO'},
+    {value: 'MBO', displayValue: 'MBO', extraInfo: 'extra info'},
     {value: 'HO', displayValue: 'HBO of WO'}];
 
   export function byValue(value: Value): Selectable<Value> {
