@@ -1,0 +1,39 @@
+<div class="form-group" [formGroup]="testForm">
+
+  <label class="center-block">Select first value:
+    <select id="selectedValue" class="form-control" formControlName="firstValue" (change)="onChange()">
+
+      <!-- 1. [value] maakt van value.value altijd een string -->
+      <!--<option *ngFor="let value of options" [value]="value.value">{{value.displayValue}}</option>-->
+
+      <!-- 2. [ngValue] laat value.value altijd in de oorspronkelijke waarde, dus bijv. number of json-object-->
+      <!--<option *ngFor="let value of options" [ngValue]="value.value">{{value.displayValue}}</option>-->
+
+      <!-- 3. je kunt een json-object in [value] stoppen, maar bij herladen van het formulier, vergelijkt hij dan de
+           json-objecten die je al ingevuld had met de json-objecten in de lijst. Als die lijst opnieuw geinitialiseerd is
+           zijn het nieuwe json-objecten. Identieke json-objecten zijn toch verschillend als het verschillende instanties
+           zijn! -->
+      <option *ngFor="let value of options" [ngValue]="value">{{value.displayValue}}</option>
+    </select>
+  </label>
+
+  <label *ngFor="let value of options" class="center-block">
+
+    <!-- 2. voor radio inputs werkt value wel gewoon met alle types. hier hoef/kun je niets met ngValue -->
+    <!--<input type="radio" formControlName="secondValue" [value]="value.value" (change)="onChange()">-->
+
+    <!-- 3. je kunt een json-object in [value] stoppen, maar bij herladen van het formulier, vergelijkt hij dan de
+         json-objecten die je al ingevuld had met de json-objecten in de lijst. Als die lijst opnieuw geinitialiseerd is
+         zijn het nieuwe json-objecten. Identieke json-objecten zijn toch verschillend als het verschillende instanties
+         zijn! -->
+    <input type="radio" formControlName="secondValue" [value]="value" (change)="onChange()">
+    {{value?.displayValue}}
+  </label>
+
+  <label class="center-block">
+    <input type="text" formControlName="text" (input)="onChange()">
+  </label>
+
+  {{testForm.value | json}}
+
+</div>
