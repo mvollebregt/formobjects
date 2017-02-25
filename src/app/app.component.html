@@ -8,7 +8,7 @@
 </label>
 
 <form *ngIf="!hidden" [formGroup]="testForm" novalidate>
-  <app-test-form formControlName="values"></app-test-form>
+  <app-test-form formControlName="values" (change)="onChange()"></app-test-form>
 </form>
 
-{{testForm.value | json}}
+{{Value.displayValue(testForm?.value?.values?.firstValue)}}

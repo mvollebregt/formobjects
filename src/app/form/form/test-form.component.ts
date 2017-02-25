@@ -1,5 +1,5 @@
 import {Component, OnInit, forwardRef} from "@angular/core";
-import {Value, VALUES} from "../shared/value";
+import {Value, Selectable} from "../shared/value-type";
 import {FormGroup, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
@@ -21,7 +21,10 @@ export class TestFormComponent implements OnInit, ControlValueAccessor {
   // 4. Dit is een manier om er toch voor te zorgen dat je json-objecten in een [(ng)value] kunt stoppen en dat bij
   // herladen dezelfde waarden verschijnen. De VALUES moeten wel in het geheugen blijven. Naar mijn idee een wat
   // fragiele oplossing.
-  options: Value[] = VALUES;
+  // options: Value[] = VALUES;
+
+  // 5. Met een class ipv een interface.
+  options: Selectable<Value>[] = Value.values;
 
   testForm: FormGroup;
   propagateChange = (_: any) => {
